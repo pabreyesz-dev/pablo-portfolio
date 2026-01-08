@@ -1,16 +1,25 @@
 ---
-
+// #region agent log
+fetch('http://127.0.0.1:7243/ingest/61382a6e-c2e1-4e84-bb9d-957339b6d3ea',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.astro:1',message:'index.astro ejecutándose',data:{timestamp:Date.now()},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+// #endregion
+import BaseLayout from "../layouts/BaseLayout.astro";
+// #region agent log
+fetch('http://127.0.0.1:7243/ingest/61382a6e-c2e1-4e84-bb9d-957339b6d3ea',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.astro:3',message:'BaseLayout importado',data:{hasBaseLayout:typeof BaseLayout!=='undefined'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+// #endregion
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Pablo Reyes | Backend & Data Developer"
+  description="Backend, Data Engineering, Business Intelligence y desarrollo de sistemas empresariales"
+>
+  <section class="flex flex-col gap-6">
+    <h1 class="text-4xl md:text-5xl">
+      Backend & Data Developer
+    </h1>
+
+    <p class="text-neutral-400 max-w-2xl">
+      Desarrollo de sistemas backend, análisis de datos empresariales,
+      Business Intelligence, bases de datos SQL y soluciones escalables.
+    </p>
+  </section>
+</BaseLayout>

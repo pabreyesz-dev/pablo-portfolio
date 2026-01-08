@@ -1,0 +1,38 @@
+---
+// #region agent log
+fetch('http://127.0.0.1:7243/ingest/61382a6e-c2e1-4e84-bb9d-957339b6d3ea',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'BaseLayout.astro:1',message:'BaseLayout ejecutándose POST-FIX',data:{hasProps:Astro.props?true:false,propsKeys:Astro.props?Object.keys(Astro.props):[]},timestamp:Date.now(),sessionId:'debug-session',runId:'post-fix',hypothesisId:'A'})}).catch(()=>{});
+// #endregion
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import "../styles/global.css";
+
+const { title = "Pablo Reyes | Backend & Data Developer", description = "Backend, Data Engineering, Business Intelligence y desarrollo de sistemas empresariales" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <title>{title}</title>
+
+    <!-- Meta SEO -->
+    <meta name="description" content={description} />
+    <meta name="keywords" content="Pablo Reyes, Backend Developer, Data Engineering, Business Intelligence, SQL" />
+    <meta name="author" content="Pablo Reyes" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+
+  <body class="min-h-screen flex flex-col bg-neutral-950 text-neutral-100">
+    <Header />
+    <main class="flex-1 w-full max-w-6xl mx-auto px-6 py-12">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
