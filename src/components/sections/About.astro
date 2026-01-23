@@ -1,0 +1,56 @@
+---
+import { Image } from 'astro:assets';
+---
+
+<section id="about" class="relative py-20 bg-white dark:bg-neutral-950 transition-colors duration-300">
+  <div class="max-w-6xl mx-auto px-6">
+    
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      
+      <!-- Content Column -->
+      <div class="space-y-6 order-2 md:order-1">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
+          Más allá del dato: <br/>
+          <span class="text-blue-600 dark:text-blue-400">Inteligencia de Negocios y Estrategia Técnica</span>
+        </h2>
+        
+        <div class="space-y-5 text-lg leading-relaxed text-slate-600 dark:text-neutral-400">
+          <p>
+            Como <span class="font-semibold text-slate-900 dark:text-white">Data Analyst y BI Engineer</span>, transformo datos crudos en decisiones estratégicas. Mi experiencia abarca todo el ciclo de vida del dato: desde su extracción y modelado en SQL/BigQuery hasta la creación de dashboards de alto impacto en Power BI y Tableau, siempre con un enfoque claro en la resolución de problemas de negocio.
+          </p>
+          
+          <p>
+            Lo que me diferencia es mi base técnica en <span class="font-semibold text-slate-900 dark:text-white">backend y cloud (GCP)</span>. No solo analizo datos; construyo pipelines robustos y automatizo procesos integrando Inteligencia Artificial para optimizar flujos de trabajo. Busco converger la ingeniería de software con la analítica para entregar soluciones escalables y eficientes.
+          </p>
+        </div>
+
+        <!-- Optional: Small signature or decorative element can go here -->
+        <div class="pt-4">
+           <div class="h-1 w-20 bg-blue-600 rounded-full"></div>
+        </div>
+      </div>
+
+      <!-- Visual/Image Column -->
+      <div class="order-1 md:order-2 flex justify-center md:justify-end">
+        <!-- Abstract representation or placeholder for profile image -->
+        <div class="relative w-full max-w-md aspect-square rounded-2xl overflow-hidden bg-slate-100 dark:bg-neutral-900 border border-slate-200 dark:border-neutral-800 flex items-center justify-center group">
+          
+           <!-- Decorative background pattern -->
+           <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-100/50 via-transparent to-transparent dark:from-blue-900/20 opacity-70"></div>
+           
+           <!-- Icon/Graphic -->
+           <div class="relative z-10 text-center space-y-4 p-8">
+              <svg class="w-24 h-24 mx-auto text-blue-500/80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+              <div class="text-sm font-mono text-slate-500 dark:text-neutral-500">
+                Data - Strategy - Engineering
+              </div>
+           </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
