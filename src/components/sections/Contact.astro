@@ -5,7 +5,7 @@ const contactInfo = [
   {
     icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>',
     title: 'Email',
-    value: 'tu-email@ejemplo.com', // TODO: Reemplazar con email real
+    value: 'pab.reyesz@gmail.com',
     link: 'mailto:pab.reyesz@gmail.com',
     action: 'Escríbeme'
   },
@@ -39,9 +39,23 @@ const contactInfo = [
 
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 animate-fade-in-up" style="animation-delay: 0.2s;">
     
-    <!-- Contact Form -->
-    <div class="bg-white dark:bg-neutral-900/50 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-neutral-800 shadow-sm">
+    <!-- Contact Form Container -->
+    <div class="bg-white dark:bg-neutral-900/50 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-neutral-800 shadow-sm relative overflow-hidden">
+      
+      <!-- Success Message (Initial hidden) -->
+      <div id="contact-success" class="hidden absolute inset-0 z-20 bg-white/95 dark:bg-neutral-900/98 backdrop-blur-sm flex flex-col items-center justify-center text-center p-8 transition-opacity duration-300">
+        <div class="w-16 h-16 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Mensaje enviado</h3>
+        <p class="text-slate-600 dark:text-neutral-400">¡Muchas gracias! Me pondré en contacto contigo pronto.</p>
+        <button id="reset-form" type="button" class="mt-6 text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">Enviar otro mensaje</button>
+      </div>
+
       <form 
+        id="contact-form"
         action="https://formspree.io/f/mzdrdlpo" 
         method="POST"
         class="space-y-6"
@@ -103,12 +117,17 @@ const contactInfo = [
         </div>
 
         <button 
+          id="submit-btn"
           type="submit"
-          class="w-full inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white transition-all duration-200 bg-blue-600 rounded-lg hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 focus:ring-offset-neutral-900"
+          class="w-full inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white transition-all duration-200 bg-blue-600 rounded-lg hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 focus:ring-offset-neutral-900 disabled:opacity-70 disabled:cursor-not-allowed"
         >
-          Enviar Mensaje
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 -mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <span id="btn-text">Enviar Mensaje</span>
+          <svg id="btn-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 -mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+          <svg id="loading-icon" class="hidden animate-spin h-5 w-5 ml-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
           </svg>
         </button>
       </form>
@@ -125,7 +144,7 @@ const contactInfo = [
 
       <div class="space-y-4">
         {contactInfo.map((item) => (
-          <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-white dark:hover:bg-neutral-900 transition-colors duration-200 group border border-transparent hover:border-slate-200 dark:hover:border-neutral-800 hover:shadow-sm">
+          <div class="flex items-start gap-4 p-4 rounded-xl bg-white dark:bg-neutral-900 border border-slate-200 dark:border-neutral-800 shadow-sm transition-all duration-200 group hover:shadow-md hover:border-blue-500/30">
             <div class="flex-shrink-0 p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform duration-200">
               <Fragment set:html={item.icon} />
             </div>
@@ -156,6 +175,66 @@ const contactInfo = [
     </div>
   </div>
 </section>
+
+<script is:inline>
+  const form = document.getElementById('contact-form');
+  const successMsg = document.getElementById('contact-success');
+  const submitBtn = document.getElementById('submit-btn');
+  const btnText = document.getElementById('btn-text');
+  const btnIcon = document.getElementById('btn-icon');
+  const loadingIcon = document.getElementById('loading-icon');
+  const resetBtn = document.getElementById('reset-form');
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Set loading state
+      submitBtn.disabled = true;
+      btnText.classList.add('opacity-50');
+      btnIcon.classList.add('hidden');
+      loadingIcon.classList.remove('hidden');
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          successMsg.classList.remove('hidden');
+          form.reset();
+        } else {
+          const data = await response.json();
+          if (Object.hasOwn(data, 'errors')) {
+            alert(data["errors"].map(error => error["message"]).join(", "));
+          } else {
+            alert('Hubo un error al enviar el mensaje. Por favor intenta de nuevo.');
+          }
+        }
+      } catch (error) {
+        alert('Error de conexión. Revisa tu internet e intenta de nuevo.');
+      } finally {
+        // Reset loading state
+        submitBtn.disabled = false;
+        btnText.classList.remove('opacity-50');
+        btnIcon.classList.remove('hidden');
+        loadingIcon.classList.add('hidden');
+      }
+    });
+  }
+
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      successMsg.classList.add('hidden');
+    });
+  }
+</script>
 
 <style>
   .animate-fade-in-up {

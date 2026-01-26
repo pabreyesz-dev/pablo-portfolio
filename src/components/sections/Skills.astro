@@ -69,7 +69,7 @@ const getColorClasses = (color) => {
 };
 ---
 
-<section id="skills" class="py-16 bg-white dark:bg-neutral-950">
+<section id="skills" class="py-16 transition-colors duration-300">
   <div class="max-w-6xl mx-auto px-6">
     
     <div class="mb-12">
@@ -83,7 +83,7 @@ const getColorClasses = (color) => {
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {skillCategories.map((category) => (
-        <div class={`p-6 rounded-2xl border transition-all duration-300 hover:shadow-lg ${getColorClasses(category.color)}`}>
+        <div class={`p-6 rounded-2xl bg-white dark:bg-neutral-900 border border-slate-200 dark:border-neutral-800 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-blue-500/30 ${getColorClasses(category.color)}`}>
           
           <div class="flex items-center gap-4 mb-4">
             <div class="p-2 rounded-lg bg-white/50 dark:bg-black/20 backdrop-blur-sm">
