@@ -5,6 +5,7 @@ fetch('http://127.0.0.1:7243/ingest/61382a6e-c2e1-4e84-bb9d-957339b6d3ea',{metho
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/sections/Hero.astro";
 import Projects from "../components/sections/Projects.astro";
+import EngineeringProjects from "../components/sections/EngineeringProjects.astro";
 
 // #region agent log
 fetch('http://127.0.0.1:7243/ingest/61382a6e-c2e1-4e84-bb9d-957339b6d3ea',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.astro:3',message:'BaseLayout importado',data:{hasBaseLayout:typeof BaseLayout!=='undefined'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
@@ -17,4 +18,5 @@ fetch('http://127.0.0.1:7243/ingest/61382a6e-c2e1-4e84-bb9d-957339b6d3ea',{metho
 >
   <Hero />
   <Projects />
+  <EngineeringProjects />
 </BaseLayout>
