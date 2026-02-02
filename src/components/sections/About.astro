@@ -1,5 +1,9 @@
 ---
 import { Image } from 'astro:assets';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section id="about" class="relative py-20 transition-colors duration-300">
@@ -12,22 +16,17 @@ import { Image } from 'astro:assets';
         <h2 
           class="text-3xl md:text-4xl font-bold tracking-tight transition-colors"
           style="color: var(--text-primary)"
+          set:html={t('about.title')}
         >
-          Más allá del dato: <br/>
-          <span class="text-blue-600 dark:text-blue-400">Inteligencia de Negocios y Estrategia Técnica</span>
         </h2>
         
         <div 
           class="space-y-5 text-lg leading-relaxed text-pretty transition-colors"
           style="color: var(--text-secondary)"
         >
-          <p>
-            Como <span class="font-semibold transition-colors" style="color: var(--text-primary)">Data Analyst y BI Engineer</span>, transformo datos complejos en activos de decisión claros. Mi enfoque es <span class="italic">end-to-end</span>: desde la extracción y aseguramiento de la calidad del dato en SQL, hasta la definición de métricas y dashboards estratégicos que impulsan el negocio.
-          </p>
+          <p set:html={t('about.p1')}></p>
           
-          <p>
-            Combino una mentalidad analítica con rigurosidad técnica en <span class="font-semibold transition-colors" style="color: var(--text-primary)">backend y cloud (Azure & GCP)</span>. Priorizo la reproducibilidad, la documentación y la escalabilidad, construyendo flujos de trabajo automatizados y confiables. No solo entrego reportes; diseño soluciones de datos sostenibles.
-          </p>
+          <p set:html={t('about.p2')}></p>
         </div>
 
         <!-- Optional: Small signature or decorative element can go here -->
@@ -50,7 +49,7 @@ import { Image } from 'astro:assets';
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
               <div class="text-sm font-mono text-slate-500 dark:text-neutral-500">
-                Data - Strategy - Engineering
+                {t('about.badge')}
               </div>
            </div>
 

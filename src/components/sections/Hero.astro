@@ -1,5 +1,9 @@
 ---
 import { Image } from 'astro:assets';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 // Define the tech stack here for easy maintenance
 const techStack = [
@@ -21,7 +25,7 @@ const techStack = [
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
         <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
       </span>
-      Disponible para nuevos proyectos
+      {t('hero.available')}
     </div>
 
     <!-- Main Headline -->
@@ -31,9 +35,8 @@ const techStack = [
         class="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] transition-colors"
         style="color: var(--text-primary)"
       >
-        Analista de Datos e <br/>
         <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-600 dark:from-blue-400 dark:to-teal-400">
-          Ingeniero de BI
+          {t('hero.title.role')}
         </span>
       </h1>
       
@@ -41,7 +44,7 @@ const techStack = [
         class="text-xl md:text-2xl font-medium max-w-2xl text-pretty transition-colors"
         style="color: var(--text-secondary)"
       >
-        Transformo datos complejos en activos estratégicos para la toma de decisiones.
+        {t('hero.subtitle')}
       </h2>
     </div>
 
@@ -50,7 +53,7 @@ const techStack = [
       class="text-lg max-w-2xl leading-relaxed text-pretty transition-colors"
       style="color: var(--text-secondary)"
     >
-      Soluciones integrales: desde la extracción y el modelado técnico, hasta la visualización de alto impacto que impulsa el negocio.
+      {t('hero.description')}
     </p>
 
     <!-- Tech Stack Mini-indicators -->
@@ -68,7 +71,7 @@ const techStack = [
         href="#proyectos" 
         class="group relative inline-flex items-center justify-center px-8 py-3 text-base font-semibold text-white transition-all duration-200 bg-blue-600 rounded-lg hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 focus:ring-offset-neutral-900 w-full sm:w-auto"
       >
-        Explorar Portfolio
+        {t('hero.cta.portfolio')}
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 -mr-1 transition-transform group-hover:translate-y-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
         </svg>
@@ -82,7 +85,7 @@ const techStack = [
           class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-slate-700 dark:text-neutral-200 transition-colors duration-200 border border-slate-300 dark:border-neutral-700 rounded-lg hover:bg-slate-50 dark:hover:bg-neutral-800 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
         >
           <svg class="w-5 h-5 mr-2 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          Conectar
+          {t('hero.cta.connect')}
         </a>
 
          <!-- GitHub Icon (tertiary/discrete) -->
@@ -100,9 +103,9 @@ const techStack = [
     
     <!-- Contact Text CTA -->
     <div class="pt-2 text-center sm:text-left animate-fade-in-up" style="animation-delay: 0.2s;">
-      <span class="text-slate-600 dark:text-neutral-400">¿Buscas colaboración? </span>
+      <span class="text-slate-600 dark:text-neutral-400">{t('hero.cta.collab')} </span>
       <a href="/contact" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-400 hover:underline hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
-        Hablemos
+        {t('hero.cta.talk')}
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
         </svg>

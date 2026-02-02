@@ -1,55 +1,12 @@
 ---
 import { Image } from 'astro:assets';
 
-const projects = [
-  {
-    title: "Technical Data Processing & AI Integration (Azure)",
-    description: "Pipeline ETL modular avanzado con integración de Inteligencia Artificial. Automatiza la ingesta, validación y transformación de datos, incorporando servicios de OpenAI y Azure Bot Services para procesamiento inteligente.",
-    details: [
-      "Arquitectura modular ETL desacoplada en Azure",
-      "Integración con OpenAI API para procesamiento inteligente de datos",
-      "Implementación de Azure Bot Services para interacción y monitoreo",
-      "Ingesta y almacenamiento en Azure Blob Storage",
-      "Protocolos de validación y control de calidad (Data Quality)",
-      "Procesamiento y normalización con Python y Pandas"
-    ],
-    tech: [
-      { name: "Python", color: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20" },
-      { name: "Azure", color: "bg-blue-600/10 text-blue-500 border-blue-600/20" },
-      { name: "OpenAI", color: "bg-green-600/10 text-green-500 border-green-600/20" },
-      { name: "pandas", color: "bg-purple-500/10 text-purple-400 border-purple-500/20" }
-    ],
-    links: {
-      github: "https://github.com/pabreyesz-dev/technical-data-processing",
-      docs: "https://github.com/pabreyesz-dev/technical-data-processing#readme"
-    },
-    featured: true
-  },
-  {
-    title: "E-commerce Analytics Platform",
-    description: "Proyecto de analítica de datos end-to-end para un negocio e-commerce, enfocado en modelado de datos, SQL avanzado y visualización de KPIs ejecutivos.",
-    details: [
-      "Diseño de esquema relacional analítico",
-      "SQL avanzado para métricas y KPIs",
-      "Integración con BigQuery",
-      "Dashboards en Power BI y Tableau",
-      "Análisis de ventas, clientes y rendimiento por categoría"
-    ],
-    tech: [
-      { name: "SQL", color: "bg-blue-500/10 text-blue-400 border-blue-500/20" },
-      { name: "PostgreSQL", color: "bg-blue-600/10 text-blue-500 border-blue-600/20" },
-      { name: "BigQuery", color: "bg-teal-500/10 text-teal-400 border-teal-500/20" },
-      { name: "Power BI", color: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20" },
-      { name: "Tableau", color: "bg-purple-500/10 text-purple-400 border-purple-500/20" },
-      { name: "GCP", color: "bg-red-500/10 text-red-400 border-red-500/20" }
-    ],
-    links: {
-      github: "https://github.com/pabreyesz-dev/data-analytics-test",
-      docs: "#" // Placeholder as per request implying it exists or is the same repo, using # if not provided specific URL other than 'Documentación técnica (README)' which usually implies the repo.
-    },
-    featured: false
-  }
-];
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { projectsData } from '../../i18n/projects';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const projects = projectsData[lang].dataProjects;
 ---
 
 <section id="proyectos" class="relative py-20 transition-colors duration-300">
@@ -60,13 +17,13 @@ const projects = [
         class="text-4xl font-bold tracking-tight transition-colors"
         style="color: var(--text-primary)"
       >
-        Data & BI Projects
+        {t('projects.title')}
       </h2>
       <p 
         class="text-lg max-w-2xl text-pretty transition-colors"
         style="color: var(--text-secondary)"
       >
-        Proyectos destacados de analítica, ingeniería de datos y visualización.
+        {t('projects.subtitle')}
       </p>
     </div>
 
@@ -118,7 +75,7 @@ const projects = [
                 
                 <!-- Key Features / Details -->
                 <div class="md:col-span-2 space-y-4">
-                  <h4 class="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-wider">Detalles Técnicos y Métricas</h4>
+                  <h4 class="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-wider">{t('projects.details')}</h4>
                   <ul class="grid sm:grid-cols-2 gap-3 text-slate-600 dark:text-neutral-400">
                     {project.details.map((detail) => (
                       <li class="flex items-start gap-2">
@@ -133,7 +90,7 @@ const projects = [
 
                 <!-- Tech Stack -->
                 <div class="space-y-4">
-                  <h4 class="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-wider">Tecnologías</h4>
+                  <h4 class="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-wider">{t('projects.tech')}</h4>
                   <div class="flex flex-wrap gap-2">
                     {project.tech.map((t) => (
                       <span class={`px-2.5 py-1 rounded-md text-xs font-mono font-medium border ${t.color}`}>

@@ -1,61 +1,11 @@
 ---
-const skillCategories = [
-  {
-    title: "Análisis e Inteligencia de Negocios",
-    description: "Transformación de datos en decisiones estratégicas mediante análisis visual.",
-    icon: "chart-bar",
-    skills: [
-      "SQL (Consultas complejas, validación y agregaciones)",
-      "Power BI (Modelado de datos, DAX y Narrativa)",
-      "Tableau (Analítica visual interactiva)"
-    ],
-    color: "blue"
-  },
-  {
-    title: "Ingeniería de Datos",
-    description: "Construcción de flujos de datos confiables y automatizados.",
-    icon: "cog",
-    skills: [
-      "Python (Análisis con Pandas/NumPy, Scripting)",
-      "Flujos ETL/ELT y Pipelines",
-      "Calidad y consistencia del dato"
-    ],
-    color: "teal"
-  },
-      {
-        title: "Infraestructura Cloud",
-        description: "Soluciones escalables para procesamiento masivo de datos.",
-        icon: "cloud",
-        skills: [
-          "Microsoft Azure (Servicios de datos e IA)",
-          "Google Cloud Platform (Ecosistema de datos)",
-          "BigQuery, Cloud Storage y Azure Blob Storage"
-        ],
-        color: "indigo"
-      },
-  {
-    title: "Bases de Datos y Backend",
-    description: "Fundamentos técnicos para el diseño de sistemas robustos.",
-    icon: "database",
-    skills: [
-      "PostgreSQL / Modelado Relacional",
-      "Integración y consumo de APIs",
-      "Arquitectura de sistemas"
-    ],
-    color: "purple"
-  },
-  {
-    title: "Metodología y Gestión",
-    description: "Estándares de calidad y colaboración eficiente.",
-    icon: "terminal",
-    skills: [
-      "Git / Control de versiones",
-      "Documentación técnica detallada",
-      "Metodologías Ágiles y Comunicación"
-    ],
-    color: "slate"
-  }
-];
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { content } from '../../i18n/content';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const skillCategories = content[lang].skills;
+
 
 const getColorClasses = (color) => {
   const map = {
@@ -77,13 +27,13 @@ const getColorClasses = (color) => {
         class="text-3xl font-bold tracking-tight mb-4 transition-colors"
         style="color: var(--text-primary)"
       >
-        Habilidades Técnicas
+        {t('skills.title')}
       </h2>
       <p 
         class="text-lg max-w-2xl transition-colors"
         style="color: var(--text-secondary)"
       >
-        Un stack enfocado en generar valor desde el dato, soportado por una sólida base de ingeniería.
+        {t('skills.subtitle')}
       </p>
     </div>
 
